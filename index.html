@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"5>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For My Bestfriend 💖</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", "Segoe UI", sans-serif;
+    }
+
+    body {
+      overflow: hidden;
+      min-height: 100vh;
+      background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1);
+      background-size: 400% 400%;
+      animation: gradientMove 12s ease infinite;
+      color: white;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .screen {
+      position: absolute;
+      inset: 0;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      z-index: 2;
+    }
+
+    .screen.active {
+      display: flex;
+    }
+
+    .glass-card {
+      width: 100%;
+      max-width: 760px;
+      background: rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 28px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+      padding: 30px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      animation: popIn 0.8s ease;
+    }
+
+    @keyframes popIn {
+      from {
+        opacity: 0;
+        transform: scale(0.92) translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1.2;
+      margin-bottom: 12px;
+      text-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    }
+
+    h2 {
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      margin-bottom: 14px;
+    }
+
+    p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .sub {
+      opacity: 0.95;
+      font-size: 1.05rem;
+      margin-bottom: 24px;
+      color: black;
+    }
+
+    .cute-btn {
+      border: none;
+      outline: none;
+      background: linear-gradient(135deg, #ff4d88, #ff7eb3);
+      color: white;
+      padding: 14px 30px;
+      border-radius: 999px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 12px 30px rgba(255, 77, 136, 0.35);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      margin: 10px 8px 0;
+    }
+
+    .cute-btn:hover {
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: 0 16px 40px rgba(255, 77, 136, 0.45);
+    }
+
+    .secondary-btn {
+      background: linear-gradient(135deg, #7f7fd5, #86a8e7, #91eae4);
+      box-shadow: 0 12px 30px rgba(127, 127, 213, 0.35);
+    }
+
+    .intro-hearts, .bg-hearts, .stars, .sparkles, .petals {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .floating-heart,
+    .star,
+    .sparkle,
+    .petal {
+      position: absolute;
+      opacity: 0.85;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+
+    .floating-heart {
+      color: #fff;
+      font-size: 18px;
+      animation-name: floatUp;
+    }
+
+    .star {
+      width: 4px;
+      height: 4px;
+      background: white;
+      border-radius: 50%;
+      box-shadow: 0 0 8px rgba(255,255,255,0.9);
+      animation-name: twinkle;
+    }
+
+    .sparkle {
+      color: #fff5;
+      font-size: 14px;
+      animation-name: floatDown;
+    }
+
+    .petal {
+      color: #ffd1e8;
+      font-size: 20px;
+      animation-name: petalFall;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(110vh) scale(0.6);
+        opacity: 0;
+      }
+      20% { opacity: 0.9; }
+      100% {
+        transform: translateY(-20vh) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    @keyframes floatDown {
+      0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 0;
+      }
+      20% { opacity: 0.8; }
+      100% {
+        transform: translateY(110vh) rotate(260deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes twinkle {
+      0%, 100% {
+        transform: scale(0.7);
+        opacity: 0.3;
+      }
+      50% {
+        transform: scale(1.6);
+        opacity: 1;
+      }
+    }
+
+    @keyframes petalFall {
+      0% {
+        transform: translateY(-10vh) translateX(0) rotate(0deg);
+        opacity: 0;
+      }
+      15% {
+        opacity: 0.9;
+      }
+      100% {
+        transform: translateY(110vh) translateX(90px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .big-emoji {
+      font-size: clamp(3rem, 8vw, 6rem);
+      margin-bottom: 14px;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .name-glow {
+      display: inline-block;
+      color: black;
+      text-shadow: 0 0 12px rgba(255,255,255,0.75), 0 0 25px rgba(255,180,220,0.7);
+    }
+
+    .envelope-wrap {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0 26px;
+      perspective: 1000px;
+    }
+
+    .envelope {
+      width: 260px;
+      height: 180px;
+      position: relative;
+      cursor: pointer;
+      transform-style: preserve-3d;
+      transition: transform 0.8s ease;
+    }
+
+    .envelope:hover {
+      transform: scale(1.03);
+    }
+
+    .env-body {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #fff0f7, #ffd5e8);
+      border-radius: 0 0 18px 18px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+    }
+
+    .env-top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: linear-gradient(135deg, #ffc2dc, #ff95c8);
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      transform-origin: top;
+      transition: transform 0.8s ease;
+      z-index: 4;
+      border-radius: 14px 14px 0 0;
+    }
+
+    .env-letter {
+      position: absolute;
+      left: 50%;
+      bottom: 10px;
+      transform: translateX(-50%);
+      width: 86%;
+      height: 130px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #ffffff, #fff7fb);
+      color: #ff4d88;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.2rem;
+      box-shadow: 0 10px 22px rgba(0,0,0,0.12);
+      transition: transform 0.8s ease, bottom 0.8s ease;
+      z-index: 2;
+      text-align: center;
+      padding: 12px;
+    }
+
+    .envelope.open .env-top {
+      transform: rotateX(180deg);
+    }
+
+    .envelope.open .env-letter {
+      bottom: 55px;
+      transform: translateX(-50%) translateY(-18px);
+    }
+
+    .type-box {
+      min-height: 180px;
+      max-width: 620px;
+      margin: 18px auto 12px;
+      color: black;
+      background: rgba(255,255,255,0.16);
+      border: 1px solid rgba(255,255,255,0.22);
+      padding: 18px;
+      border-radius: 22px;
+      text-align: left;
+      box-shadow: inset 0 0 20px rgba(255,255,255,0.08);
+      white-space: pre-wrap;
+      font-size: 1.05rem;
+      line-height: 1.9;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 10px;
+      animation: blink 0.8s infinite;
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+
+    .memory-slider {
+      position: relative;
+      height: 110px;
+      overflow: hidden;
+      margin-top: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.22);
+    }
+
+    .memory-track {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      color: black;
+    }
+
+    .memory-item {
+      position: absolute;
+      width: 100%;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 16px;
+      font-size: 1.05rem;
+      opacity: 0;
+      transform: translateX(40px);
+      transition: 2s;
+    }
+
+    .memory-item.show {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .forgive-zone {
+      position: relative;
+      height: 120px;
+      margin-top: 20px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.12);
+      border: 1px dashed rgba(255,255,255,0.38);
+      overflow: hidden;
+    }
+
+    .moving-btn {
+      position: absolute;
+      top: 38px;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: 0.28s ease;
+      white-space: nowrap;
+    }
+
+    .tiny-note {
+      margin-top: 14px;
+      font-size: 0.95rem;
+      opacity: 0.9;
+      color: black
+    }
+
+    .final-message {
+      max-width: 650px;
+      margin: 0 auto;
+      line-height: 2;
+      font-size: 1.08rem;
+      color: black;
+    }
+
+    .glow-heart {
+      font-size: 3rem;
+      margin: 12px 0 16px;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); text-shadow: 0 0 0 rgba(255,255,255,0.5);}
+      50% { transform: scale(1.15); text-shadow: 0 0 28px rgba(255,255,255,0.9);}
+      100% { transform: scale(1); text-shadow: 0 0 0 rgba(255,255,255,0.5);}
+    }
+
+    .burst-heart {
+      position: fixed;
+      font-size: 18px;
+      pointer-events: none;
+      z-index: 10;
+      animation: burst 1s forwards ease-out;
+    }
+
+    @keyframes burst {
+      0% {
+        opacity: 1;
+        transform: translate(0,0) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(var(--x), var(--y)) scale(1.8);
+      }
+    }
+
+    .footer-line {
+      margin-top: 20px;
+      font-size: 1rem;
+      opacity: 0.95;
+    }
+
+    .music-note {
+      margin-top: 12px;
+      font-size: 0.95rem;
+      opacity: 0.88;
+    }
+
+    @media (max-width: 600px) {
+      .glass-card {
+        padding: 24px 16px;
+        border-radius: 22px;
+      }
+
+      .envelope {
+        width: 220px;
+        height: 155px;
+      }
+
+      .type-box {
+        min-height: 220px;
+        font-size: 0.98rem;
+      }
+
+      .memory-slider {
+        height: 130px;
+      }
+    }
+
+/* MOBILE RESPONSIVE FIX */
+@media (max-width: 600px) {
+
+  body {
+    overflow-y: auto;
+  }
+
+  .glass-card {
+    width: 95%;
+    padding: 20px 15px;
+    border-radius: 20px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+  .sub {
+    font-size: 14px;
+  }
+
+  .type-box {
+    font-size: 14px;
+    min-height: 200px;
+  }
+
+  .envelope {
+    width: 200px;
+    height: 140px;
+  }
+
+  .cute-btn {
+    font-size: 14px;
+    padding: 10px 18px;
+  }
+
+  .memory-slider {
+    height: 140px;
+  }
+
+  .forgive-zone {
+    height: 140px;
+  }
+
+  .moving-btn {
+    font-size: 13px;
+  }
+
+}
+  </style>
+</head>
+<body>
+
+  <div class="stars" id="stars"></div>
+  <div class="bg-hearts" id="bgHearts"></div>
+  <div class="sparkles" id="sparkles"></div>
+  <div class="petals" id="petals"></div>
+
+  <!-- Optional Music -->
+  <!--
+  Tamari favorite song file same folder ma muki ne niche src ma naam nakho.
+  Example: src="song.mp3"
+  -->
+<audio id="bgMusic" loop>
+  <source src="C:\Users\AYUSH\OneDrive\Desktop\Chudel\Sorry\WhatsApp Audio 2026-04-08 at 03.04.57.mpeg" type="audio/mpeg">
+</audio>
+
+
+<script>
+  function playMusic() {
+    const music = document.getElementById("bgMusic");
+    music.play().then(() => {
+      console.log("Music started");
+    }).catch((err) => {
+      console.log("Music not started:", err);
+      alert("Music play karva mate fari thi button par tap karo.");
+    });
+  }
+</script>
+
+  <!-- Screen 1 -->
+  <section class="screen active" id="screen1">
+    <div class="glass-card">
+      <div class="big-emoji">🥺💖</div>
+      <h1><span class="name-glow">Hey Bestfriend</span></h1>
+
+      <button class="cute-btn" onclick="goToEnvelope()">Click the Button ✨</button>
+      <button class="cute-btn secondary-btn" onclick="playMusic()">Play Music 🎵</button>
+
+  </section>
+
+  <!-- Screen 2 -->
+  <section class="screen" id="screen2">
+    <div class="glass-card">
+      <h2>Aa tara mate che... 💌</h2>
+      <p class="sub">Envelope par click kar ane vach.</p>
+
+      <div class="envelope-wrap">
+        <div class="envelope" id="envelope" onclick="openEnvelope()">
+          <div class="env-top"></div>
+          <div class="env-body"></div>
+          <div class="env-letter">Tap to Open<br>My Sorry Letter 💖</div>
+        </div>
+      </div>
+
+    <h3><b><div id="envelopeHint" class="tiny-note">I am seriously sorry sorry sorry sorry 🥺💖</div></b></h3>
+    </div>
+  </section>
+
+  <!-- Screen 3 -->
+  <section class="screen" id="screen3">
+    <div class="glass-card">
+      <h1>I am really really really sorry... 😔</h1>
+      <div class="type-box" id="typedText"></div>
+      <button class="cute-btn" onclick="goToMemories()">Read More 💗</button>
+    </div>
+  </section>
+
+  <!-- Screen 4 -->
+  <section class="screen" id="screen4">
+    <div class="glass-card">
+      <h1>Please Ek vaar aa pan sambhl 🌸</h1>
+      <p class="sub"></p>
+
+      <div class="memory-slider">
+        <div class="memory-track">
+          <div class="memory-item show">Tu mara mate khali friend nathi... tu to Forever Bestfriend 6a 💖</div>
+          <div class="memory-item">Tari sathe vaat karvani, irritate karvani, amuk name thi chidava ni aa baddhi maja alag 6a  ✨</div>
+          <div class="memory-item">Mane sauthi vadhare hurt e thay che ke mara thi tu hurt thai 😞</div>
+          <div class="memory-item">Hu bas etlu j kau chu ke yes mari bhul 6a please accept the sorry please please please 🥺</div>
+        </div>
+      </div>
+
+      <button class="cute-btn" onclick="goToForgive()">One Last Thing 👉</button>
+    </div>
+  </section>
+
+  <!-- Screen 5 -->
+  <section class="screen" id="screen5">
+    <div class="glass-card">
+      <h1>Bas have final request chhe... 🫶</h1>
+      <p class="sub">
+        Nichena button par click kari ne mane ek chance aap...
+      </p>
+
+      <div class="forgive-zone" id="forgiveZone">
+        <button class="cute-btn moving-btn" id="forgiveBtn" onclick="goToFinal()">Forgive Me Please 🥺💖</button>
+      </div>
+
+      <div class="tiny-note">Button pan thodu shy chhe... pan tu try karis to mali jase 😭</div>
+    </div>
+  </section>
+
+  <!-- Screen 6 -->
+  <section class="screen" id="screen6">
+    <div class="glass-card">
+      <div class="glow-heart">💖</div>
+      <h1>Thank You For Reading...</h1>
+      <div class="final-message">
+        Jo tu aiya sudhi aai 6a, to etle tu mara mate ketli important 6a a fari ek vaar prove thai gayu...<br><br>
+
+        Hu sacha dil thi sorry kau chu<br>
+        Mara words ocha padi shake, pan mari feeling nahi<br><br>
+
+        Mane tari friendship ni value chhe<br>
+
+        You are precious to me... always ✨<br>
+      
+        Forever sorry... forever grateful... forever your bestfriend 💌<br><br>
+
+        Oye pagal mani ja ne yarrr please please please 🥺💖
+
+    </div>
+
+
+      <button class="cute-btn" onclick="restartStory()">Read Again 🌸</button>
+    </div>
+  </section>
+
+  <script>
+    const screens = document.querySelectorAll(".screen");
+    const typedText = document.getElementById("typedText");
+    const envelope = document.getElementById("envelope");
+    const forgiveBtn = document.getElementById("forgiveBtn");
+    const forgiveZone = document.getElementById("forgiveZone");
+    const bgMusic = document.getElementById("bgMusic");
+
+    let typingStarted = false;
+    let memoryInterval;
+
+    function showScreen(id) {
+      screens.forEach(screen => screen.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
+    }
+
+    function goToEnvelope() {
+      showScreen("screen2");
+    }
+
+    function openEnvelope() {
+      envelope.classList.add("open");
+      burstHearts(window.innerWidth / 2, window.innerHeight / 2, 18);
+      setTimeout(() => {
+        showScreen("screen3");
+        if (!typingStarted) {
+          typeMessage();
+          typingStarted = true;
+        }
+      }, 1200);
+    }
+
+    const sorryMessage = 
+`Dear Bestfriend,
+
+Mane khabar chhe ke mara thi bau moti bhul thi 6a
+
+Tane bau khotu lagyu 6a
+Bau j hurt thai 6a mane khabar 6a
+Tara karta hu vadhare hurt thayo 6a
+
+But
+
+Maro tane hurt karvano koi intention nathi
+Mane khabar 6a ke tari life ma b ghana badha problems hase
+Atle hu e vichari ne atyar suddhi nato keto
+
+Please believe me...
+I am really, really, really, really sorry. 🥺💖`;
+
+    function typeMessage() {
+      let i = 0;
+      typedText.innerHTML = "";
+      const speed = 35;
+
+      function type() {
+        if (i < sorryMessage.length) {
+          const char = sorryMessage.charAt(i);
+          typedText.innerHTML += char === "\n" ? "<br>" : char;
+          typedText.innerHTML += `<span class="cursor">|</span>`;
+          i++;
+
+          const cursors = typedText.querySelectorAll(".cursor");
+          if (cursors.length > 1) cursors[0].remove();
+
+          setTimeout(type, speed);
+        } else {
+          const cursor = typedText.querySelector(".cursor");
+          if (cursor) cursor.remove();
+        }
+      }
+
+      type();
+    }
+
+    function goToMemories() {
+      showScreen("screen4");
+      startMemorySlider();
+      burstHearts(window.innerWidth / 2, window.innerHeight / 2, 16);
+    }
+
+    function startMemorySlider() {
+      const items = document.querySelectorAll(".memory-item");
+      let index = 0;
+
+      clearInterval(memoryInterval);
+
+      items.forEach((item, i) => {
+        item.classList.toggle("show", i === 0);
+      });
+
+      memoryInterval = setInterval(() => {
+        items[index].classList.remove("show");
+        index = (index + 1) % items.length;
+        items[index].classList.add("show");
+      }, 2300);
+    }
+
+    function goToForgive() {
+      showScreen("screen5");
+    }
+
+    function moveForgiveBtn() {
+      const zoneRect = forgiveZone.getBoundingClientRect();
+      const btnRect = forgiveBtn.getBoundingClientRect();
+
+      const maxX = zoneRect.width - btnRect.width - 10;
+      const maxY = zoneRect.height - btnRect.height - 10;
+
+      const randomX = Math.max(10, Math.floor(Math.random() * maxX));
+      const randomY = Math.max(10, Math.floor(Math.random() * maxY));
+
+      forgiveBtn.style.left = randomX + "px";
+      forgiveBtn.style.top = randomY + "px";
+      forgiveBtn.style.transform = "none";
+    }
+
+    forgiveBtn.addEventListener("mouseenter", moveForgiveBtn);
+    forgiveBtn.addEventListener("touchstart", moveForgiveBtn);
+
+    function goToFinal() {
+      showScreen("screen6");
+      burstHearts(window.innerWidth / 2, window.innerHeight / 2, 28);
+    }
+
+    function restartStory() {
+      envelope.classList.remove("open");
+      typingStarted = false;
+      typedText.innerHTML = "";
+      clearInterval(memoryInterval);
+      forgiveBtn.style.left = "50%";
+      forgiveBtn.style.top = "38px";
+      forgiveBtn.style.transform = "translateX(-50%)";
+      showScreen("screen1");
+      burstHearts(window.innerWidth / 2, window.innerHeight / 2, 14);
+    }
+
+    function burstHearts(x, y, count = 16) {
+      for (let i = 0; i < count; i++) {
+        const heart = document.createElement("div");
+        heart.className = "burst-heart";
+        heart.innerText = ["💖","💗","💘","💕","✨"][Math.floor(Math.random() * 5)];
+        heart.style.left = x + "px";
+        heart.style.top = y + "px";
+        heart.style.setProperty("--x", `${(Math.random() - 0.5) * 240}px`);
+        heart.style.setProperty("--y", `${(Math.random() - 0.5) * 240}px`);
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 1000);
+      }
+    }
+
+    function createBackground() {
+      const stars = document.getElementById("stars");
+      const hearts = document.getElementById("bgHearts");
+      const sparkles = document.getElementById("sparkles");
+      const petals = document.getElementById("petals");
+
+      for (let i = 0; i < 40; i++) {
+        const star = document.createElement("div");
+        star.className = "star";
+        star.style.left = Math.random() * 100 + "vw";
+        star.style.top = Math.random() * 100 + "vh";
+        star.style.animationDuration = (1.4 + Math.random() * 2.6) + "s";
+        star.style.animationDelay = Math.random() * 2 + "s";
+        stars.appendChild(star);
+      }
+
+      for (let i = 0; i < 26; i++) {
+        const heart = document.createElement("div");
+        heart.className = "floating-heart";
+        heart.innerText = ["💖", "💕", "💗", "💓"][Math.floor(Math.random() * 4)];
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (6 + Math.random() * 6) + "s";
+        heart.style.animationDelay = Math.random() * 8 + "s";
+        heart.style.fontSize = (16 + Math.random() * 18) + "px";
+        hearts.appendChild(heart);
+      }
+
+      for (let i = 0; i < 18; i++) {
+        const sparkle = document.createElement("div");
+        sparkle.className = "sparkle";
+        sparkle.innerText = "✨";
+        sparkle.style.left = Math.random() * 100 + "vw";
+        sparkle.style.animationDuration = (5 + Math.random() * 5) + "s";
+        sparkle.style.animationDelay = Math.random() * 8 + "s";
+        sparkle.style.fontSize = (10 + Math.random() * 12) + "px";
+        sparkles.appendChild(sparkle);
+      }
+
+      for (let i = 0; i < 14; i++) {
+        const petal = document.createElement("div");
+        petal.className = "petal";
+        petal.innerText = "🌸";
+        petal.style.left = Math.random() * 100 + "vw";
+        petal.style.animationDuration = (8 + Math.random() * 5) + "s";
+        petal.style.animationDelay = Math.random() * 6 + "s";
+        petals.appendChild(petal);
+      }
+    }
+
+    function playMusic() {
+      bgMusic.play().catch(() => {
+        alert("Jo tame music mukvu hoy to code ma audio source ma tamaru song file naam add karo 🎵");
+      });
+    }
+
+    document.getElementById("forgiveBtn").addEventListener("click", function() {
+        this.style.left = "50%";
+            });
+
+    createBackground();
+  </script>
+</body>
+</html>
